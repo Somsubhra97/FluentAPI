@@ -15,6 +15,8 @@ namespace FluentAPI.Repository
 
         Task<PostViewModel> GetPost(int? postId);
 
+        Task<List<PostViewModel>> GetPostsByCategory(int id);
+        
         Task<int> AddPost(Post post);
 
         Task<int> DeletePost(int? postId);

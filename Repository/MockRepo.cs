@@ -53,7 +53,7 @@ namespace FluentAPI.Repository
             {
                 return await (from p in db.Post
                               from c in db.Category
-                              where p.PostId == postId
+                              where And
                               select new PostViewModel
                               {
                                   PostId = p.PostId,
@@ -67,7 +67,28 @@ namespace FluentAPI.Repository
 
             return null;
         }
+       
+       public async Task<List<PostViewModel>> GetPostsByCategory(int id){
+        
+        if(db!=null){
+          
+          return await(from c in db.CATEGORY_ID
+                       from p in db.Post 
+                       where c.Id==id And p.CategoryId == c.Id
+                        select new PostViewModel
+                              {
+                                  PostId = p.PostId,
+                                  Title = p.Title,
+                                  Description = p.Description,
+                                  CategoryId = p.CategoryId,
+                                  CategoryName = c.Name,
+                                  CreatedDate = p.CreatedDate
+                              }).FirstOrDefaultAsync();
+                      
+            }
+       }
 
+       
         public async Task<int> AddPost(Post post)
         {
             if (db != null)

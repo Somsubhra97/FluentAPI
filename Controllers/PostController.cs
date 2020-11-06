@@ -61,6 +61,30 @@ namespace FluentAPI.Controllers
         }
 
         [HttpGet]
+        [Route("GetPostsByCategory")]
+        public async Task<IActionResult> GetPosts(int id)
+        {
+            if (postId == null)
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var posts = await postRepository.GetPostsByCategory(id);
+                if (posts == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(posts);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
         [Route("GetPost")]
         public async Task<IActionResult> GetPost(int? postId)
         {
