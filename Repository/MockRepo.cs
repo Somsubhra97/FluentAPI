@@ -87,15 +87,13 @@ namespace FluentAPI.Repository
 
             if (db != null)
             {
-                //Find the post for specific post id
+                
                 var post = await db.Post.FirstOrDefaultAsync(x => x.PostId == postId);
 
                 if (post != null)
                 {
-                    //Delete that post
-                    db.Post.Remove(post);
-
-                    //Commit the transaction
+                    
+                    db.Post.Remove(post);                    
                     result = await db.SaveChangesAsync();
                 }
                 return result;
@@ -109,10 +107,8 @@ namespace FluentAPI.Repository
         {
             if (db != null)
             {
-                //Delete that post
-                db.Post.Update(post);
-
-                //Commit the transaction
+                
+                db.Post.Update(post);                
                 await db.SaveChangesAsync();
             }
         }
