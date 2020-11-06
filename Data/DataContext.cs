@@ -57,8 +57,8 @@ namespace FluentAPI.Data
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Post)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK__Post__CATEGORY_I__1273C1CD");
+                    .HasForeignKey(d => d.CategoryId);
+                    
             });
         }
     }
