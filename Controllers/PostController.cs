@@ -62,7 +62,7 @@ namespace FluentAPI.Controllers
 
         [HttpGet]
         [Route("GetPostsByCategory")]
-        public async Task<IActionResult> GetPosts(int id)
+        public async Task<IActionResult> GetPostsByCategory(int id)
         {
             if (postId == null)
             {
