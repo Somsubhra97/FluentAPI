@@ -53,7 +53,7 @@ namespace FluentAPI.Repository
             {
                 return await (from p in db.Post
                               from c in db.Category
-                              where And
+                              where p.PostId == postId
                               select new PostViewModel
                               {
                                   PostId = p.PostId,
@@ -93,6 +93,9 @@ namespace FluentAPI.Repository
         {
             if (db != null)
             {
+                Category c=await db.Category
+                                   .FirstOrDefaultAsync(i=>i.id==post.CategoryId);
+                post.Category=c;
                 await db.Post.AddAsync(post);
                 await db.SaveChangesAsync();
 
